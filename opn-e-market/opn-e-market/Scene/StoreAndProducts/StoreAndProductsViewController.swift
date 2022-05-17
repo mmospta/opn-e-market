@@ -12,10 +12,13 @@ protocol StoreAndProductViewControllerInterface: AnyObject {
   func displaySomething(viewModel: StoreAndProducts.Something.ViewModel)
 }
 
-class StoreAndProductsViewController: UIViewController, StoreAndProductViewControllerInterface {
+class StoreAndProductsViewController: UIViewController, StoreAndProductViewControllerInterface, UITableViewDelegate {
   var interactor: StoreAndProductsInteractorInterface!
   var router: StoreAndProductsRouter!
 
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+  
   // MARK: - Object lifecycle
 
   override func awakeFromNib() {
@@ -44,7 +47,19 @@ class StoreAndProductsViewController: UIViewController, StoreAndProductViewContr
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "productCell")
+    tableView.isScrollEnabled = false
+    
     doSomethingOnLoad()
+  }
+  
+  override func viewWillLayoutSubviews() {
+    DispatchQueue.main.async {
+      self.tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+//      self.tableViewHeight.constant = self.tableView.contentSize.height
+    }
   }
 
   // MARK: - Event handling
@@ -73,5 +88,18 @@ class StoreAndProductsViewController: UIViewController, StoreAndProductViewContr
   @IBAction func unwindToStoreAndProductViewController(from segue: UIStoryboardSegue) {
     print("unwind...")
     router.passDataToNextScene(segue: segue)
+  }
+}
+
+extension StoreAndProductsViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 2
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as? ProductTableViewCell else {
+      return UITableViewCell()
+    }
+    return cell
   }
 }
