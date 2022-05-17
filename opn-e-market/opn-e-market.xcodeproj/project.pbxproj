@@ -124,17 +124,15 @@
 			isa = PBXGroup;
 			children = (
 				8D2994F92832485C008024B2 /* Scene */,
+				8D2995102832C1A0008024B2 /* Models */,
 				8D2994C32832408C008024B2 /* AppDelegate.swift */,
 				8D2994C52832408C008024B2 /* SceneDelegate.swift */,
 				8D2994C72832408C008024B2 /* ViewController.swift */,
+				8D2994F7283247B0008024B2 /* NetworkManager.swift */,
 				8D2994C92832408C008024B2 /* Main.storyboard */,
 				8D2994CC2832408F008024B2 /* Assets.xcassets */,
 				8D2994CE2832408F008024B2 /* LaunchScreen.storyboard */,
 				8D2994D12832408F008024B2 /* Info.plist */,
-				8D2994F32832426F008024B2 /* Store.swift */,
-				8D2994F52832427C008024B2 /* Product.swift */,
-				8D2994F7283247B0008024B2 /* NetworkManager.swift */,
-				8D29950E283281D6008024B2 /* Order.swift */,
 			);
 			path = "opn-e-market";
 			sourceTree = "<group>";
@@ -159,6 +157,24 @@
 		8D2994F92832485C008024B2 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				8D2995112832C1CF008024B2 /* StoreAndProducts */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		8D2995102832C1A0008024B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8D2994F32832426F008024B2 /* Store.swift */,
+				8D2994F52832427C008024B2 /* Product.swift */,
+				8D29950E283281D6008024B2 /* Order.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8D2995112832C1CF008024B2 /* StoreAndProducts */ = {
+			isa = PBXGroup;
+			children = (
 				8D2994FA2832487F008024B2 /* StoreAndProductsStore.swift */,
 				8D2994FB2832487F008024B2 /* StoreAndProductsPresenter.swift */,
 				8D2994FC2832487F008024B2 /* StoreAndProductsWorker.swift */,
@@ -168,7 +184,7 @@
 				8D2995002832487F008024B2 /* StoreAndProductsInteractor.swift */,
 				8D29950A28324C83008024B2 /* StoreAndProducts.storyboard */,
 			);
-			path = Scene;
+			path = StoreAndProducts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
